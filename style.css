@@ -1,0 +1,134 @@
+{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(200deg, #7BAFD4, #4B9CD3);
+}
+
+.start-screen,
+.score-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+#start-button,
+#restart {
+  font-size: 1.3em;
+  padding: 0.6em 2em;
+  border-radius: 0.4em;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background-color: #4B9CD3;
+  color: #ffffff;
+}
+
+#restart {
+  margin-top: 1em;
+}
+
+#display-container {
+  background-color: #ffffff;
+  padding: 3em 2em;
+  width: 82%;
+  max-width: 38em;
+  margin: 0 auto;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 0.7em;
+  border: 1px solid #b0cde6;
+}
+
+.header {
+  margin-bottom: 2em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid #d2e3f1;
+}
+
+.timer-div {
+  background-color: #e3f2fd;
+  width: 8em;
+  border-radius: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6em 1.5em;
+  color: #1565c0;
+  font-weight: bold;
+}
+
+.question {
+  margin-bottom: 1.4em;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.option-div {
+  font-size: 1em;
+  width: 100%;
+  padding: 1em;
+  margin: 0.4em 0;
+  text-align: left;
+  background: transparent;
+  border: 1.5px solid #b0cde6;
+  border-radius: 0.4em;
+  transition: background-color 0.2s ease;
+  color: #2c3e50;
+}
+
+.option-div:disabled {
+  color: #555;
+  cursor: not-allowed;
+}
+
+#next-button {
+  font-size: 1em;
+  margin-top: 1.6em;
+  background-color: #4B9CD3;
+  color: #ffffff;
+  padding: 0.75em 2em;
+  border-radius: 0.4em;
+  float: right;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hide {
+  display: none;
+}
+
+.incorrect {
+  background-color: #ffebee;
+  color: #c62828;
+  border-color: #c62828;
+}
+
+.correct {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-color: #2e7d32;
+}
+
+#user-score {
+  font-size: 1.6em;
+  color: #ffffff;
+}
