@@ -1,3 +1,7 @@
+// Get all the elements from the page we need for the quiz
+let timeLeft = document.querySelector(".time-left");
+let quizContainer = document.getElementById("container");
+let nextBtn = document.getElementById("next-button");
 let countOfQuestion = document.querySelector(".number-of-question");
 let displayContainer = document.getElementById("display-container");
 let scoreContainer = document.querySelector(".score-container");
@@ -6,11 +10,13 @@ let userScore = document.getElementById("user-score");
 let startScreen = document.querySelector(".start-screen");
 let startButton = document.getElementById("start-button");
 
+// Keep track of current question, score, and timer
 let questionCount;
 let scoreCount = 0;
 let count = 11;
 let countdown;
 
+// List of questions for the quiz
 const quizArray = [
     {
         id: "0",
@@ -24,30 +30,37 @@ const quizArray = [
         options: ["North America", "Asia", "Africa", "Europe"],
         correct: "Europe",
     },
-    {
+  {
         id: "0",
         question: "In which year the first man land on the moon?",
         options: ["1956", "1972", "1969", "1999"],
         correct: "1969",
     },
+    // More questions...
 ];
 
+// Restart button: start quiz again from the beginning
 restart.addEventListener("click", () => {
     initial();
     displayContainer.classList.remove("hide");
     scoreContainer.classList.add("hide");
 });
 
+// Next button: go to the next question or show final score
 nextBtn.addEventListener(
     "click",
     (displayNext = () => {
         questionCount += 1;
         if (questionCount == quizArray.length) {
+            // No more questions, show score
             displayContainer.classList.add("hide");
             scoreContainer.classList.remove("hide");
-            userScore.innerHTML = "Your score is " + scoreCount + " out of " + questionCount;
+            userScore.innerHTML =
+                "Your score is " + scoreCount + " out of " + questionCount;
         } else {
-            countOfQuestion.innerHTML = questionCount + 1 + " of " + quizArray.length + " Question";
+            // Show next question
+            countOfQuestion.innerHTML =
+                questionCount + 1 + " of " + quizArray.length + " Question";
             quizDisplay(questionCount);
             count = 11;
             clearInterval(countdown);
@@ -56,6 +69,7 @@ nextBtn.addEventListener(
     })
 );
 
+// Timer for each question
 const timerDisplay = () => {
     countdown = setInterval(() => {
         count--;
@@ -67,6 +81,7 @@ const timerDisplay = () => {
     }, 1000);
 };
 
+// Show the current question and hide others
 const quizDisplay = (questionCount) => {
     let quizCards = document.querySelectorAll(".container-mid");
     quizCards.forEach((card) => {
@@ -75,10 +90,11 @@ const quizDisplay = (questionCount) => {
     quizCards[questionCount].classList.remove("hide");
 };
 
+// Create all the questions and options
 function quizCreator() {
-    quizArray.sort(() => Math.random() - 0.5);
+    quizArray.sort(() => Math.random() - 0.5); // shuffle questions
     for (let i of quizArray) {
-        i.options.sort(() => Math.random() - 0.5);
+        i.options.sort(() => Math.random() - 0.5); // shuffle options
 
         let div = document.createElement("div");
         div.classList.add("container-mid", "hide");
@@ -100,6 +116,7 @@ function quizCreator() {
     }
 }
 
+// Check if the selected answer is correct
 function checker(userOption) {
     let userSolution = userOption.innerText;
     let question = document.getElementsByClassName("container-mid")[questionCount];
@@ -122,6 +139,7 @@ function checker(userOption) {
     });
 }
 
+// Reset everything to start a new quiz
 function initial() {
     quizContainer.innerHTML = "";
     questionCount = 0;
@@ -133,13 +151,16 @@ function initial() {
     quizDisplay(questionCount);
 }
 
+// When user clicks start button
 startButton.addEventListener("click", () => {
     startScreen.classList.add("hide");
     displayContainer.classList.remove("hide");
     initial();
 });
 
+// Show start screen when page loads
 window.onload = () => {
     startScreen.classList.remove("hide");
     displayContainer.classList.add("hide");
 };
+
